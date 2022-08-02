@@ -64,7 +64,7 @@ factEmbedding = net(fact)
 ```
 
 ## Reference
+[Project Page](https://erato.idvxlab.com/Project/)
 ```
 Mengdi Sun, Ligan Cai, Weiwei Cui, Yanqiu Wu, Yang Shi, and Nan Cao. Erato: Cooperative Data Story Editing via Fact Interpolation. IEEE Trans. Visualization & Comp. Graphics, 2022
 ```
-[Erato](https://erato.idvxlab.com)
