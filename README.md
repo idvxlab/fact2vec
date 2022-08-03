@@ -1,7 +1,7 @@
 # Fact2Vec
 
 ## Introduction
-Fact4Vec employs a deep embedding model to convert data facts into vector representations. It is achieved by adding two fully connected layers on top of BERT and fine-tuned based on a set of manually designed visual narratives.
+Fact2Vec employs a deep embedding model to convert data facts (pieces in a data story) into vector representations. It is achieved by adding two fully connected layers on top of BERT and fine-tuned based on a set of manually designed visual data stories.
 
 ## Requirements
 - Python 3.7.3
@@ -9,7 +9,7 @@ Fact4Vec employs a deep embedding model to convert data facts into vector repres
 - Transformers 4.9.1
 - Sentence-transformers 2.0.0
 
-**Note**: you may need to install CUDA (≥10.2) on your own server to gain massive speedups, if possible.
+**Note**: CUDA (≥10.2) is required.
 
 ## Dataset
 The dataset contains 300 triples (_dataset/storypieces.csv_), each training value is a trigram of the facts. The input format of a data fact is as follows:
