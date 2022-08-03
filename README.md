@@ -16,7 +16,7 @@ Fact2Vec is a pretrained embeding model used for converting a data fact (i.e., a
 
 
 ## Training Corpus 
-We selected 100 high-quality data stories that were manually authored based on different datasets using the Calliope system (https://datacalliope.com). All of these stories consist of 5 data facts with diverse fact types. They were designed by following either the time-oriented narrative structure or the parallel structure. 300 fact trigrams were extracted from these stories as our training set. Each of them consisted of 3 succeeding data facts in the original story. The data is available at (_dataset/storypieces.csv_)
+The model was trained based on 100 high-quality data stories that were manually authored by experts using the Calliope system (https://datacalliope.com). All of these stories consist of 5 data facts with diverse fact types. They were designed by following either the time-oriented narrative structure or the parallel structure. 300 fact trigrams were extracted from these stories as the training set. Each of them consisted of 3 succeeding data facts in the original story. The data is available at (_dataset/storypieces.csv_)
 
 ## Requirements and Dependencies
 - Python 3.7.3
@@ -25,22 +25,15 @@ We selected 100 high-quality data stories that were manually authored based on d
 - Sentence-transformers 2.0.0
 - CUDA ≥10.2 (Optional)
 
-
 ## How to use
-**1. Import pytorch**
+on GPU
 ```
 import torch
-```
-**2. Load the pretrained model**
-```
 net = torch.load('fact4vec.pth')
-```
-**3. Convert the data fact into vector**
-```
 embedding = net(fact)
 ```
 
-It also runs on cpu:
+on CPU
 ```
 net = torch.load('fact4vec.pth',map_location='cpu')
 net = net.to(torch.device('cpu'))
