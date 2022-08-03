@@ -34,7 +34,7 @@ Train the model with the prepared dataset, using two fully connected layers on t
 
 It is fine-tuned with its own loss function:
 
-![image](https://github.com/idvxlab/fact4vec/blob/master/training/loss_function.png)
+<img src="https://github.com/idvxlab/fact4vec/raw/master/training/loss_function.png" alt="loss" style="width: 270px">
 
 Go to folder _training_, execute the following command to start training model. It will save the training result in the folder.
 ```
