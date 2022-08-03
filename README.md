@@ -14,14 +14,7 @@ Fact2Vec is a part of the Erato system (https://erato.idvxlab.com/project/). It 
 ### Training Corpus 
 The model was trained based on 100 high-quality data stories that were manually authored by experts using the Calliope system (https://datacalliope.com). All of these stories consist of 5 data facts with diverse fact types. They were designed by following either the time-oriented narrative structure or the parallel structure. 300 fact trigrams were extracted from these stories as the training set. Each of them consisted of 3 succeeding data facts in the original story. The data is available at (_dataset/storypieces.csv_)
 
-### Requirements and Dependencies
-- Python 3.7.3
-- Pytorch 1.9.0
-- Transformers 4.9.1
-- Sentence-transformers 2.0.0
-- CUDA ≥10.2 (Optional)
-
-### How to use the pretrained model
+### Use the pretrained model
 on GPU
 ```
 import torch
@@ -37,3 +30,11 @@ net = net.to(torch.device('cpu'))
 torch.no_grad()
 embedding = net(fact)
 ```
+
+### Requirements and Dependencies
+- Python 3.7.3
+- Pytorch 1.9.0
+- Transformers 4.9.1
+- Sentence-transformers 2.0.0
+- CUDA ≥10.2 (Optional)
+
