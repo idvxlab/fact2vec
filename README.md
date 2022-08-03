@@ -64,7 +64,7 @@ factEmbedding = net(fact)
 ```
 
 ## Reference
-[Project Page](https://erato.idvxlab.com/Project/)
+[Project Page](https://erato.idvxlab.com/project/)
 ```
 @article{sun2022erato,
       title={Erato: Cooperative Data Story Editing via Fact Interpolation},
