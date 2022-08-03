@@ -9,10 +9,10 @@ Fact4Vec employs a deep embedding model to convert data facts into vector repres
 - Transformers 4.9.1
 - Sentence-transformers 2.0.0
 
-**Note**: you may need to install CUDA on your own server to make the training go fast.
+**Note**: you may need to install CUDA (≥10.2) on your own server to gain massive speedups, if possible.
 
 ## Dataset
-The dataset contains 300 triples (_dataset/trainingDataset.csv_), each training value is a trigram of the facts. The input format of a data fact is as follows:
+The dataset contains 300 triples (_dataset/storypieces.csv_), each training value is a trigram of the facts. The input format of a data fact is as follows:
 ```
 [type]fact-type [subspace]field,value [measure]field,agg[breakdown]field [focus]value [meta]extra-info
 ```
@@ -32,7 +32,7 @@ Train the model with the prepared dataset, using two fully connected layers on t
 |Learning rate|0.01|
 
 
-It is fine-tuned with its own loss function:
+The model is fine-tuned with its own loss function:
 
 <img src="https://github.com/idvxlab/fact4vec/raw/master/training/loss_function.png" alt="loss" style="width: 270px">
 
@@ -42,15 +42,15 @@ python main.py
 ```
 
 ## How to use
-**First, install pytorch and import it**
+**1. Install pytorch and import it**
 ```
 import torch
 ```
-**Then, load the model**
+**2. Load the model**
 ```
 net = torch.load('fact4vec.pth')
 ```
-**Convert the data fact into vector**
+**3. Convert the data fact into vector**
 ```
 factEmbedding = net(fact)
 ```
@@ -66,5 +66,11 @@ factEmbedding = net(fact)
 ## Reference
 [Project Page](https://erato.idvxlab.com/Project/)
 ```
-Mengdi Sun, Ligan Cai, Weiwei Cui, Yanqiu Wu, Yang Shi, and Nan Cao. Erato: Cooperative Data Story Editing via Fact Interpolation. IEEE Trans. Visualization & Comp. Graphics, 2022
+@article{sun2022erato,
+      title={Erato: Cooperative Data Story Editing via Fact Interpolation},
+      author={Sun, Mengdi and Cai, Ligan and Cui, Weiwei and Wu, Yanqiu and Shi, Yang and Cao, Nan},
+      journal = {IEEE Transactions on Visualization and Computer Graphics},
+      year = {2022},
+      publisher={IEEE}
+    }
 ```
