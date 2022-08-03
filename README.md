@@ -1,4 +1,4 @@
-# Fact4Vec
+# Fact2Vec
 
 ## Introduction
 Fact4Vec employs a deep embedding model to convert data facts into vector representations. It is achieved by adding two fully connected layers on top of BERT and fine-tuned based on a set of manually designed visual narratives.
