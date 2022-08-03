@@ -1,66 +1,48 @@
 # Fact2Vec
 
 ## Introduction
-Fact2Vec employs a deep embedding model to convert data facts (pieces in a data story) into vector representations. It is achieved by adding two fully connected layers on top of BERT and fine-tuned based on a set of manually designed visual data stories.
+Fact2Vec is a pretrained embeding model used for converting data facts into vector presentations that capture the facts' semantic similarity. A data fact is a data story piece that is defined in the following paper: 
+```
+Danqing Shi, Xinyue Xu, Fuling Sun, Yang Shi, Nan Cao:
+Calliope: Automatic Visual Data Story Generation from a Spreadsheet. IEEE Trans. Vis. Comput. Graph. 27(2): 453-463 (2021)
+```
+
+Fact2Vec is trained based on a set of manually designed visual data stories by fine tuning BERT using the following loss:
+
+<img src="https://github.com/idvxlab/fact4vec/raw/master/training/loss_function.png" alt="loss" style="width: 270px">
+
+
+##Training Corpus 
+We selected 100 high-quality data stories that were manually authored based on different datasets using the Calliope system (https://datacalliope.com). All of these stories consist of 5 data facts with diverse fact types. They were designed by following either the time-oriented narrative structure or the parallel structure. 300 fact trigrams were extracted from these stories as our training set. Each of them consisted of 3 succeeding data facts in the original story. The data is available at (_dataset/storypieces.csv_)
 
 ## Requirements
 - Python 3.7.3
 - Pytorch 1.9.0
 - Transformers 4.9.1
 - Sentence-transformers 2.0.0
+- CUDA ≥10.2 (Optional)
 
-**Note**: CUDA (≥10.2) is required.
-
-## Dataset
-The dataset contains 300 triples (_dataset/storypieces.csv_), each training value is a trigram of the facts. The input format of a data fact is as follows:
-```
-[type]fact-type [subspace]field,value [measure]field,agg[breakdown]field [focus]value [meta]extra-info
-```
-## Data Preprocessing
-Install the [pre-trained model](https://www.sbert.net/) to initialize the data fact into vectors (_training/preprocessing.py_).
-```
-pip install sentence-transformers
-```
-
-## Fine-Tuning
-Train the model with the prepared dataset, using two fully connected layers on top of BERT with 768 inputs and 768 outputs. 
-
-|Model Parameter|Value|
-|-------------|-------------------|
-|Batch|16|
-|Epoch|10|
-|Learning rate|0.01|
-
-
-The model is fine-tuned with its own loss function:
-
-<img src="https://github.com/idvxlab/fact4vec/raw/master/training/loss_function.png" alt="loss" style="width: 270px">
-
-Go to folder _training_, execute the following command to start training model. It will save the training result in the folder.
-```
-python main.py
-```
 
 ## How to use
-**1. Install pytorch and import it**
+**1. Import pytorch**
 ```
 import torch
 ```
-**2. Load the model**
+**2. Load the pretrained model**
 ```
 net = torch.load('fact4vec.pth')
 ```
 **3. Convert the data fact into vector**
 ```
-factEmbedding = net(fact)
+embedding = net(fact)
 ```
 
-If only cpu on your server, try:
+It also runs on cpu:
 ```
 net = torch.load('fact4vec.pth',map_location='cpu')
 net = net.to(torch.device('cpu'))
 torch.no_grad()
-factEmbedding = net(fact)
+embedding = net(fact)
 ```
 
 ## Reference
