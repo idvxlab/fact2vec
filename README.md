@@ -1,5 +1,5 @@
 ## Introduction
-Fact2Vec is a part of the Erato system (https://erato.idvxlab.com/project/). It is pretrained embeding model used for converting a data fact (i.e., a data story piece) into a vector presentation that captures the semantics of the fact and those logically related data facts will close to each other in the vector space. Details about the project is described in the following paper: 
+Fact2Vec is a part of the Erato system (https://erato.idvxlab.com/project/). It is a pretrained embeding model used for coverting a data fact (i.e., a data story piece) into a vector presentation that captures the semantics of the fact. Those logically related data facts will be lined up and close to each other in the vector space. Details about the model is described in the following paper: 
 
 ```
 @article{sun2022erato,
