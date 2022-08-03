@@ -38,6 +38,6 @@ torch.no_grad()
 embedding = net(fact)
 ```
 
-### website
+### Website
 https://erato.idvxlab.com/project/
 
