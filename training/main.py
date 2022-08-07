@@ -1,34 +1,40 @@
 from matplotlib.pyplot import step
 import torch
 import numpy as np
-import torch.nn.functional as F
-from FullConnectedNuralNetwork import FullConnectedNuralNetwork
+from FactEmbedder import FactEmbedder
 from customLoss import customLoss
 import torch.utils.data as Data
-from preprocessing import load_data
+import pandas as pd
 
+
+def load_data():
+    csv_data = pd.read_csv('dataset/storypieces.csv')  # read file
+    dataSet = []
+    for _, row in csv_data.iterrows():
+        rowSet = []
+        corpus_sentence =row["sentence1"]
+        rowSet.append(corpus_sentence)
+        corpus_sentence = row["sentence2"]
+        rowSet.append(corpus_sentence)
+        corpus_sentence = row["sentence3"]
+        rowSet.append(corpus_sentence)
+        dataSet.append(rowSet)
+
+    return dataSet
 
 def modelTrain(indexFolder, dataSet):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
-    trainDataset1 = dataSet
-    trainDataset1 = torch.as_tensor(trainDataset1, dtype=torch.float32)
-    if torch.cuda.is_available():
-        trainDataset1 = trainDataset1.cuda()
-    else:
-        trainDataset1 = trainDataset1
-    trainDataset = Data.TensorDataset(trainDataset1)
 
     MINIBATCH_SIZE = 16    # batch size
     epoch_num = 10
     # put the dataset into DataLoader
     trainLoader = Data.DataLoader(
-        dataset=trainDataset,
+        dataset=dataSet,
         batch_size=MINIBATCH_SIZE,
         shuffle=True
     )
 
-    net = FullConnectedNuralNetwork()
+    net = FactEmbedder()
     custom_criterion = customLoss()
     net.to(device)
     custom_criterion.to(device)
@@ -58,14 +64,7 @@ if __name__ == "__main__":
 
     dataSet = load_data()
 
-    #########################################
-    # optional:  save the dataset and load it
-    #########################################
-    # fiveElementsDataset=np.array(dataSet)
-    # np.save('fiveElementsDataset',fiveElementsDataset)
-    # enc = np.load('fiveElementsDataset.npy')
-    # dataSet = list(enc)
-
+    # choose the fold to train
     # for i in range(0,5):
     #     modelTrain(i,dataSet)
-    modelTrain(0, dataSet)
+    modelTrain(2, dataSet)

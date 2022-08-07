@@ -18,14 +18,14 @@ The model was trained based on 100 high-quality data stories that were manually 
 on GPU
 ```
 import torch
-net = torch.load('fact4vec.pth')
+net = torch.load('fact2vec.pth')
 embedding = net(fact)
 ```
 
 on CPU
 ```
 import torch
-net = torch.load('fact4vec.pth',map_location='cpu')
+net = torch.load('fact2vec.pth',map_location='cpu')
 net = net.to(torch.device('cpu'))
 torch.no_grad()
 embedding = net(fact)
