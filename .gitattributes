@@ -1,0 +1,1 @@
+model/fact2vec.pth filter=lfs diff=lfs merge=lfs -text
