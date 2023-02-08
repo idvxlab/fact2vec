@@ -43,7 +43,7 @@ def modelTrain(indexFolder, dataSet):
     for i in range(epoch_num):
         for step, batch in enumerate(trainLoader):
             optomizerAdam.zero_grad()
-            output = net(batch[0])
+            output = net(list(map(list,zip(*batch))))
             train_loss = custom_criterion(output)
             train_loss.backward()
             running_loss = train_loss.item()  # loss accumulation
